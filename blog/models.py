@@ -26,7 +26,8 @@ class PostQuerySet(models.QuerySet):
         return self
     
     def get_prefetch(self):
-        return self.prefetch_related('author', Prefetch('tags', queryset=Tag.objects.annotate(posts_count=Count('posts'))))
+        return self.prefetch_related('author', Prefetch('tags',
+            queryset=Tag.objects.annotate(posts_count=Count('posts'))))
 
 
 class Post(models.Model):
