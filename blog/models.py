@@ -23,7 +23,7 @@ class PostQuerySet(models.QuerySet):
             post.comments_count = count_for_id[post.id]
         return self
 
-    def get_prefetch(self):
+    def get_prefetching(self):
         return self.prefetch_related('author', Prefetch('tags',
             queryset=Tag.objects.annotate(posts_count=Count('posts'))))
 
